@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duwe Terraplanagem</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Duwe Terraplanagem</h1>
+        <nav>
+            <ul>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#simulador">Simulador</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="header-image"></div>
+
+    <div class="image-container">
+        <img src="heavy-excavator-digging-day-light (1).jpg" alt="Imagem 1">
+        <img src="heavy-excavator-digging-day-light.jpg" alt="Imagem 2">
+    </div>
+
+    <section id="servicos">
+        <h2>Nossos Serviços</h2>
+        <ul>
+            <li class="servico">
+                <span class="servico-titulo">Terraplanagem</span>
+                <div class="servico-info">
+                    <p>A terraplanagem é o processo de preparação do terreno para construção.</p>
+                </div>
+            </li>
+            <li class="servico">
+                <span class="servico-titulo">Escavação</span>
+                <div class="servico-info">
+                    <p>A escavação é realizada para criar fundações, valas ou outras estruturas.</p>
+                </div>
+            </li>
+            <li class="servico">
+                <span class="servico-titulo">Compactação de Solo</span>
+                <div class="servico-info">
+                    <p>A compactação de solo aumenta a densidade do terreno para suportar estruturas.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section id="sobre-nos">
+        <h2>Sobre Nós</h2>
+        <div class="sobre-conteudo">
+            <p>
+                A <strong>Duwe Terraplanagem</strong> é uma empresa especializada em serviços de terraplanagem, escavação e compactação de solo. 
+                Com mais de 15 anos de experiência no mercado, nos destacamos pela qualidade, eficiência e compromisso com nossos clientes.
+            </p>
+            <p>
+                Nossa missão é transformar terrenos em espaços prontos para construção, garantindo segurança, durabilidade e excelência em cada projeto. 
+                Utilizamos equipamentos de última geração e contamos com uma equipe altamente qualificada.
+            </p>
+            <p>
+                Além dos serviços tradicionais, oferecemos consultoria personalizada para ajudar você a planejar seu projeto desde o início, 
+                garantindo que cada detalhe seja cuidadosamente executado.
+            </p>
+        </div>
+    </section>
+
+    <section id="simulador">
+        <h2>Simulador de Orçamento</h2>
+        <label for="area">Área em m²:</label>
+        <input type="number" id="area" placeholder="Digite a área">
+        <button onclick="calcularOrcamento()">Calcular</button>
+        <p id="resultado"></p>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <form action="https://formspree.io/f/xkgjjqey" method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+            
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem" required></textarea>
+            
+            <button type="submit">Enviar</button>
+        </form>
+        <p class="mensagem-enviada"></p>
+    </section>
+<a href="https://wa.me/5547991835447?text=Olá,%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento%20personalizado,%20você%20pode%20me%20ajudar?" 
+   class="whatsapp-button" 
+   target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+    <footer>
+        <p>&copy; 2025 Duwe Terraplanagem. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="javascript.js"></script>
+    
+</body>
+</html>
