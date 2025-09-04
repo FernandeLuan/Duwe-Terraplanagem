@@ -6,6 +6,7 @@
     <title>Duwe Terraplanagem</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
     <header>
@@ -48,8 +49,7 @@
             </li>
         </ul>
     </section>
-
-    <section id="sobre-nos">
+<section id="sobre-nos" class="caixa-padrao">
         <h2>Sobre Nós</h2>
         <div class="sobre-conteudo">
             <p>
@@ -66,16 +66,113 @@
             </p>
         </div>
     </section>
+<section id="depoimentos">
+  <h2>O que dizem nossos clientes</h2>
+  <div class="depoimentos-slider">
+    <div class="depoimento">
+      <p>"Equipe extremamente profissional. O terreno ficou perfeito!"</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="João">
+        <span>João, Gaspar</span>
+        <div class="estrelas">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Serviço rápido e limpo. Recomendo sem pensar duas vezes."</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Carla">
+        <span>Carla, Indaial</span>
+        <div class="estrelas">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Atendimento excelente e preço justo. Fiquei muito satisfeito."</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Marcos">
+        <span>Marcos, Pomerode</span>
+        <div class="estrelas">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"A compactação foi feita com precisão. Ótimo resultado!"</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Fernanda">
+        <span>Fernanda, Brusque</span>
+        <div class="estrelas">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Muito profissionais, entregaram antes do prazo!"</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Rafael">
+        <span>Rafael, Timbó</span>
+        <div class="estrelas">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Excelente comunicação e execução. Nota 10!"</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Luciana">
+        <span>Luciana, Itajaí</span>
+        <div class="estrelas">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Fiquei impressionado com a organização da equipe."</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Eduardo">
+        <span>Eduardo, Navegantes</span>
+        <div class="estrelas">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Serviço impecável, recomendo para qualquer obra."</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Juliana">
+        <span>Juliana, Balneário Camboriú</span>
+        <div class="estrelas">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Atendimento rápido e muito educado. Gostei demais."</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Tiago">
+        <span>Tiago, Penha</span>
+        <div class="estrelas">⭐⭐⭐⭐</div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <p>"Tudo saiu conforme o planejado. Excelente trabalho!"</p>
+      <div class="cliente">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Amanda">
+        <span>Amanda, São João Batista</span>
+        <div class="estrelas">⭐⭐⭐⭐⭐</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="mapa">
+    <h2>Área de Atendimento</h2>
+    <div id="map" style="height: 400px; border-radius: 15px;"></div>
+</section>
+<div class="sessao-dupla">
+  <section id="simulador" class="caixa-padrao">
+    <h2>Simulador de Orçamento</h2>
 
-    <section id="simulador">
-        <h2>Simulador de Orçamento</h2>
-        <label for="area">Área em m²:</label>
-        <input type="number" id="area" placeholder="Digite a área">
-        <button onclick="calcularOrcamento()">Calcular</button>
-        <p id="resultado"></p>
-    </section>
+    <label for="tipo-servico">Tipo de Serviço:</label>
+    <select id="tipo-servico">
+        <option value="terraplanagem">Terraplanagem</option>
+        <option value="escavacao">Escavação</option>
+        <option value="compactacao">Compactação</option>
+    </select>
 
-    <section id="contato">
+    <label for="area">Área em m²:</label>
+    <input type="number" id="area" placeholder="Digite a área">
+
+    <button onclick="calcularOrcamento()">Calcular</button>
+    <p id="resultado"></p>  </section>
+
+  <section id="contato" class="caixa-padrao">
         <h2>Contato</h2>
         <form action="https://formspree.io/f/xkgjjqey" method="POST">
             <label for="nome">Nome:</label>
@@ -89,8 +186,10 @@
             
             <button type="submit">Enviar</button>
         </form>
-        <p class="mensagem-enviada"></p>
-    </section>
+        <p class="mensagem-enviada"></p>  </section>
+</div>
+
+
 <a href="https://wa.me/5547991835447?text=Olá,%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento%20personalizado,%20você%20pode%20me%20ajudar?" 
    class="whatsapp-button" 
    target="_blank">
@@ -101,6 +200,7 @@
     </footer>
     
     <script src="javascript.js"></script>
-    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </body>
 </html>

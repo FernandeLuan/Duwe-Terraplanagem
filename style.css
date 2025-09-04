@@ -1,8 +1,11 @@
+* {
+    box-sizing: border-box;
+}
 body {
     font-family: 'Oswald', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #ff9b19, #e9a20aa8);
+    background-color: hsl(44, 71%, 41%);    
     color: white;
     text-align: center;
 }
@@ -20,42 +23,58 @@ header {
     height: 300px;
 }
 
+h1, h2 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
 .header-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(Imagens/scene-construction-site-with-equipment.jpg) no-repeat center center;
     background-size: cover;
     opacity: 0.8;
     z-index: -1;
 }
-
 .image-container {
-    margin: 60px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 50px;
-    padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .image-container img {
-    flex: 1 1 300px;
-    max-width: 30%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 480px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .image-container img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  transform: scale(1.03);
 }
+@media (max-width: 768px) {
+  .image-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
 
+  .image-container img {
+    max-width: 90%;
+  }
+}
 ul {
     padding-top: 10px;
     padding-left: 0;
@@ -225,6 +244,115 @@ footer {
         margin-bottom: 20px; 
     }
 }
+
+#mapa {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 1000px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#mapa h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.caixa-padrao {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 50px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.caixa-padrao:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+#depoimentos {
+  padding: 50px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin: 40px auto;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#depoimentos h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.depoimentos-slider {
+  display: flex;
+  gap: 30px;
+  width: fit-content;
+  animation: deslizar 60s linear infinite;
+  will-change: transform;
+}
+
+.depoimento {
+  flex: 0 0 300px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.depoimento:hover {
+  transform: scale(1.05);
+}
+
+.depoimento p {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.cliente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.cliente img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.cliente span {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.estrelas {
+  font-size: 1.2rem;
+  color: gold;
+}
+
+@keyframes deslizar {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 #sobre-nos {
     display: flex;
     flex-direction: column;
@@ -232,8 +360,6 @@ footer {
     padding: 30px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    margin: 60px auto;
-    max-width: 800px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -263,6 +389,21 @@ footer {
 
 .sobre-conteudo strong {
     color: #00000081;
+}
+#simulador select {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    margin-bottom: 10px;
+}
+#simulador select option {
+    background-color: #333; 
+    color: #fff; 
 }
 #simulador {
     display: flex;
@@ -343,6 +484,20 @@ footer {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     transition: opacity 0.3s ease-in-out;
 }
+.sessao-dupla {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.sessao-dupla .caixa-padrao {
+  flex: 1 1 450px;
+  min-height: 400px;
+}
+
 #contato {
     display: flex;
     flex-direction: column;
@@ -462,7 +617,13 @@ footer {
         font-size: 24px;
         padding: 15px;
     }
-
+    body {
+        font-size: 16px;
+    }
+    
+    h1, h2 {
+        font-size: 1.8rem;
+    }
     .image-container {
         gap: 15px;
     }
@@ -476,14 +637,22 @@ footer {
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     header {
-        font-size: 20px;
-        padding: 10px;
+        height: auto;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .image-container {
-        gap: 10px;
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px 10px;
     }
 
     .image-container img {
@@ -491,15 +660,14 @@ footer {
     }
 
     section {
-        padding: 20px 10px;
+        padding: 30px 10px;
     }
 
     form {
-        padding: 15px;
+        width: 90%;
     }
 
-    button {
-        padding: 8px 16px;
-        font-size: 14px;
+    #servicos ul {
+        grid-template-columns: 1fr;
     }
 }
