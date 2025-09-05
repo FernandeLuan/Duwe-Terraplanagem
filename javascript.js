@@ -13,6 +13,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { threshold: 0.1 });
     sections.forEach(section => observer.observe(section));
 
+    // Adiciona o botão hamburguer dinamicamente
+    const header = document.querySelector('header');
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    header.insertBefore(menuToggle, header.querySelector('nav'));
+
+    // Menu hamburguer
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+
+    // Clique no logo para voltar ao topo
+    const logo = document.querySelector('.logo h1');
+    logo.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     // Mapa
     map = L.map('map').setView([-26.9185, -49.0653], 10);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -177,16 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     requestAnimationFrame(animateSlider);
-
-    // Botão Voltar ao Topo
-    const backToTop = document.getElementById("back-to-top");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) backToTop.style.display = "block";
-        else backToTop.style.display = "none";
-    });
-    backToTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
 
     // Accordion FAQ
     const faqQuestions = document.querySelectorAll(".faq-question");

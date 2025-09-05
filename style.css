@@ -17,7 +17,7 @@ header {
     top: 0;
     width: 100%;
     background: #2E7D32;
-    padding: 15px 20px;
+    padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,12 +30,19 @@ header {
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+nav {
+    flex-grow: 0;
 }
 
 nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
+    justify-content: flex-end;
 }
 
 nav ul li a {
@@ -43,10 +50,33 @@ nav ul li a {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s;
+    scroll-behavior: smooth; /* Rolagem suave */
+    cursor: pointer; /* Opcional: mãozinha nos links do menu */
 }
 
 nav ul li a:hover {
     color: #FBC02D;
+}
+
+/* Ajuste de offset para compensar o header fixo */
+[id] {
+    scroll-margin-top: 80px; /* Altura do header + margem (ajuste se necessário) */
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 3px;
+    transition: background 0.3s;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 #hero {
@@ -268,7 +298,7 @@ h2 {
 .depoimentos-slider {
     display: flex;
     gap: 20px;
-    width: calc(300px * 20); /* 10 depoimentos + 10 duplicados */
+    width: calc(300px * 20);
     transition: transform 0.5s ease;
 }
 
@@ -367,9 +397,9 @@ h2 {
 }
 
 #simulador h2, #contato h2 {
-    font-size: 1.5rem; /* Reduzido para caber em uma linha */
+    font-size: 1.5rem;
     margin-bottom: 20px;
-    white-space: nowrap; /* Garante que o título fique em uma linha */
+    white-space: nowrap;
 }
 
 #simulador label, #contato label {
@@ -500,23 +530,101 @@ h2 {
     margin: 0;
 }
 
+footer {
+    background: #2E7D32;
+    color: #fff;
+    padding: 20px 15px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    margin-right: auto; /* Alinha o logo à esquerda, colado na borda */
+}
+
+.footer-logo h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-contact p {
+    margin: 5px 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #FBC02D;
+}
+
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 10px;
+    .logo h1 {
+        font-size: 1rem;
+        max-width: none;
+        text-overflow: clip;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background: #2E7D32;
+        padding: 10px;
+    }
+
+    nav.active {
+        display: block;
     }
 
     nav ul {
         flex-direction: column;
         gap: 10px;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    header {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
     }
 
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .hero-content p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .galeria-container {
@@ -541,11 +649,39 @@ h2 {
         left: 10px;
     }
 
-    .faq-question {
-        font-size: 1rem;
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    #simulador h2, #contato h2 {
-        font-size: 1.2rem; /* Ajuste para telas menores */
+    .footer-logo {
+        margin-right: 0; /* Remove margem em telas menores para alinhamento central */
+    }
+}
+
+@media (min-width: 769px) {
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    nav {
+        display: flex !important;
+    }
+
+    header {
+        justify-content: space-between;
+    }
+
+    .logo {
+        margin-right: auto;
+    }
+
+    nav ul {
+        justify-content: flex-end;
+        margin-left: auto;
     }
 }
