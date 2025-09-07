@@ -1,8 +1,10 @@
 let map;
 let markers = [];
+let galleryOffset = 0;
+let gallerySlides = [];
+let isGalleryPaused = false;
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Animações de entrada
     const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -13,26 +15,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { threshold: 0.1 });
     sections.forEach(section => observer.observe(section));
 
-    // Adiciona o botão hamburguer dinamicamente
-    const header = document.querySelector('header');
-    const menuToggle = document.createElement('button');
-    menuToggle.className = 'menu-toggle';
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    header.insertBefore(menuToggle, header.querySelector('nav'));
-
-    // Menu hamburguer
+    const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
     });
 
-    // Clique no logo para voltar ao topo
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 820) {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    });
+
     const logo = document.querySelector('.logo h1');
     logo.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Mapa
     map = L.map('map').setView([-26.9185, -49.0653], 10);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
@@ -43,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .openPopup();
 
     L.circle([-26.9185, -49.0653], {
-        color: '#2E7D32',
-        fillColor: '#2E7D32',
+        color: '#1E3A8A',
+        fillColor: '#1E3A8A',
         fillOpacity: 0.2,
         radius: 50000
     }).addTo(map).bindPopup("Cobertura de até 50 km");
@@ -73,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
         markers.push(marker);
     });
 
-    // Filtro de cidades no mapa
     document.getElementById("cidade-filtro").addEventListener("change", function () {
         const filtro = this.value;
         markers.forEach(marker => {
@@ -85,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Formulário de contato
     const form = document.querySelector("#contato form");
     const mensagemEnviada = document.querySelector("#contato .mensagem-enviada");
 
@@ -123,16 +129,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Carrossel de depoimentos
     const slider = document.querySelector(".depoimentos-slider");
     const depoimentos = document.querySelectorAll(".depoimento");
     let offset = 0;
     let isPaused = false;
-    const slideWidth = 320; // 300px (largura do depoimento) + 20px (gap)
+    const slideWidth = 320;
     const totalSlides = depoimentos.length;
-    const maxOffset = -slideWidth * totalSlides;
+    const maxOffset = -slideWidth * (totalSlides - 1);
 
-    // Duplicar depoimentos para loop infinito
     depoimentos.forEach(depoimento => {
         const clone = depoimento.cloneNode(true);
         slider.appendChild(clone);
@@ -144,16 +148,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function animateSlider() {
         if (!isPaused) {
-            offset -= 1; // Velocidade do deslizamento automático
+            offset -= 0.5;
             if (offset <= maxOffset) {
-                offset = 0; // Resetar para o início
+                offset = 0;
                 slider.style.transition = "none";
                 updateSlider();
                 setTimeout(() => {
-                    slider.style.transition = "transform 0.5s ease";
+                    slider.style.transition = "transform 1.5s ease";
                 }, 0);
             } else {
-                slider.style.transition = "transform 0.5s ease";
+                slider.style.transition = "transform 1.5s ease";
                 updateSlider();
             }
         }
@@ -167,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
         isPaused = true;
         offset -= slideWidth;
         if (offset < maxOffset) offset = 0;
-        slider.style.transition = "transform 0.5s ease";
+        slider.style.transition = "transform 1.5s ease";
         updateSlider();
         setTimeout(() => isPaused = false, 2000);
     };
@@ -176,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
         isPaused = true;
         offset += slideWidth;
         if (offset > 0) offset = maxOffset;
-        slider.style.transition = "transform 0.5s ease";
+        slider.style.transition = "transform 1.5s ease";
         updateSlider();
         setTimeout(() => isPaused = false, 2000);
     };
@@ -186,18 +190,17 @@ document.addEventListener("DOMContentLoaded", function () {
             offset = 0;
             slider.style.transition = "none";
             updateSlider();
-            setTimeout(() => slider.style.transition = "transform 0.5s ease", 0);
+            setTimeout(() => slider.style.transition = "transform 1.5s ease", 0);
         } else if (offset > 0) {
             offset = maxOffset;
             slider.style.transition = "none";
             updateSlider();
-            setTimeout(() => slider.style.transition = "transform 0.5s ease", 0);
+            setTimeout(() => slider.style.transition = "transform 1.5s ease", 0);
         }
     });
 
     requestAnimationFrame(animateSlider);
 
-    // Accordion FAQ
     const faqQuestions = document.querySelectorAll(".faq-question");
     faqQuestions.forEach(question => {
         question.addEventListener("click", () => {
@@ -209,6 +212,109 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    document.querySelectorAll('.collapsible-section .collapsible-title').forEach(title => {
+        title.addEventListener('click', () => {
+            const section = title.closest('.collapsible-section');
+            const content = title.nextElementSibling;
+            const icon = title.querySelector('.toggle-icon');
+            section.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+            icon.style.transform = section.classList.contains('collapsed') ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+    });
+
+    const carouselSlides = document.querySelectorAll('.carousel-slide');
+    gallerySlides = Array.from(carouselSlides);
+    const gallerySlideWidth = carouselSlides[0].offsetWidth;
+    const totalGallerySlides = gallerySlides.length;
+    const gallerySlidesContainer = document.querySelector('.carousel-slides');
+
+    gallerySlides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        gallerySlidesContainer.appendChild(clone);
+    });
+
+    function updateGallery() {
+        gallerySlidesContainer.style.transform = `translateX(${galleryOffset}px)`;
+    }
+
+    function animateGallery() {
+        if (!isGalleryPaused) {
+            galleryOffset -= 1;
+            if (galleryOffset <= -gallerySlideWidth * (totalGallerySlides - 1)) {
+                galleryOffset = 0;
+                gallerySlidesContainer.style.transition = "none";
+                updateGallery();
+                setTimeout(() => {
+                    gallerySlidesContainer.style.transition = "transform 0.5s ease";
+                }, 0);
+            } else {
+                gallerySlidesContainer.style.transition = "transform 0.5s ease";
+                updateGallery();
+            }
+        }
+        requestAnimationFrame(animateGallery);
+    }
+
+    gallerySlidesContainer.addEventListener("mouseenter", () => isGalleryPaused = true);
+    gallerySlidesContainer.addEventListener("mouseleave", () => isGalleryPaused = false);
+    document.querySelector('.carousel-prev').addEventListener("click", () => isGalleryPaused = true);
+    document.querySelector('.carousel-next').addEventListener("click", () => isGalleryPaused = true);
+
+    window.nextGallerySlide = function () {
+        isGalleryPaused = true;
+        galleryOffset -= gallerySlideWidth;
+        if (galleryOffset <= -gallerySlideWidth * totalGallerySlides) {
+            galleryOffset = 0;
+            gallerySlidesContainer.style.transition = "none";
+            updateGallery();
+            setTimeout(() => {
+                gallerySlidesContainer.style.transition = "transform 0.5s ease";
+            }, 0);
+        }
+        gallerySlidesContainer.style.transform = `translateX(${galleryOffset}px)`;
+        setTimeout(() => isGalleryPaused = false, 2000);
+    };
+
+    window.prevGallerySlide = function () {
+        isGalleryPaused = true;
+        galleryOffset += gallerySlideWidth;
+        if (galleryOffset >= 0) {
+            galleryOffset = -gallerySlideWidth * (totalGallerySlides - 1);
+            gallerySlidesContainer.style.transition = "none";
+            updateGallery();
+            setTimeout(() => {
+                gallerySlidesContainer.style.transition = "transform 0.5s ease";
+            }, 0);
+        }
+        gallerySlidesContainer.style.transform = `translateX(${galleryOffset}px)`;
+        setTimeout(() => isGalleryPaused = false, 2000);
+    };
+
+    window.addEventListener('resize', () => {
+        const newSlideWidth = carouselSlides[0].offsetWidth;
+        const scale = newSlideWidth / gallerySlideWidth;
+        galleryOffset = galleryOffset * scale;
+        gallerySlidesContainer.style.transform = `translateX(${galleryOffset}px)`;
+    });
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    document.querySelectorAll('.carousel-slide img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = img.alt;
+        });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.querySelector('.close-lightbox').addEventListener('click', closeLightbox);
 });
 
 function calcularOrcamento() {
@@ -248,23 +354,16 @@ function calcularOrcamento() {
 function openLightbox(src) {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
-    const caption = document.getElementById("lightbox-caption");
-    lightboxImg.src = src;
-    caption.innerText = lightboxImg.alt;
     lightbox.style.display = "flex";
-
-    let scale = 1;
-    lightboxImg.addEventListener("wheel", (e) => {
-        e.preventDefault();
-        scale += e.deltaY * -0.001;
-        scale = Math.min(Math.max(1, scale), 3);
-        lightboxImg.style.transform = `scale(${scale})`;
-    });
+    lightboxImg.src = src;
 }
 
 function closeLightbox() {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     lightbox.style.display = "none";
+    lightboxImg.src = "";
     lightboxImg.style.transform = "scale(1)";
 }
+
+requestAnimationFrame(animateGallery)

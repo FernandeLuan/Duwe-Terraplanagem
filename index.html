@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Duwe Terraplanagem - Especialistas em terraplanagem, escavação e compactação de solo em Santa Catarina.">
-    <title>Duwe Terraplanagem</title>
+    <title>Duwe Terraplanagem - Especialistas em Terrenos</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" href="Imagens/logo-duwe.png" type="image/png">
 </head>
 <body>
     <header>
@@ -18,6 +19,7 @@
         <nav>
             <ul>
                 <li><a href="#hero">Início</a></li>
+                <li><a href="#galeria">Projetos</a></li>
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#sobre-nos">Sobre</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
@@ -26,13 +28,14 @@
                 <li><a href="#faq">FAQ</a></li>
             </ul>
         </nav>
+        <button class="menu-toggle"><i class="fas fa-bars"></i></button>
     </header>
 
     <section id="hero">
         <div class="hero-content">
-            <div class="hero-background" style="background-image: url('Imagens/heavy-excavator-digging-day-light.jpg');"></div>
+            <div class="hero-background" style="background: url('Imagens/scene-construction-site-with-equipment.jpg') no-repeat center center/cover;"></div>
             <h1>Transformando Terrenos com Excelência</h1>
-            <p>Especialistas em terraplanagem, escavação e compactação de solo há mais de 15 anos.</p>
+            <p>Especialistas em terraplanagem, escavação e compactação de solo há mais de 10 anos.</p>
             <a href="https://wa.me/5547991835447?text=Olá,%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento%20personalizado,%20você%20pode%20me%20ajudar?" class="cta-button" target="_blank">Solicite um Orçamento</a>
         </div>
     </section>
@@ -40,15 +43,23 @@
     <section id="galeria">
         <h2>Nossos Projetos</h2>
         <div class="galeria-container">
-            <img src="Imagens/heavy-excavator-digging-day-light (1).jpg" alt="Terraplanagem em obra" onclick="openLightbox(this.src)">
-            <img src="Imagens/heavy-excavator-digging-day-light.jpg" alt="Escavação em obra" onclick="openLightbox(this.src)">
-            <img src="Imagens/close-up-de-uma-escavadeira-de-obra.jpg" alt="Projeto adicional 1" onclick="openLightbox(this.src)" class="galeria-placeholder">
-            <img src="Imagens/escavadeira-pesada-para-cavar-na-luz-dia.jpg" alt="Projeto adicional 2" onclick="openLightbox(this.src)" class="galeria-placeholder">
-        </div>
-        <div id="lightbox" class="lightbox">
-            <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-            <img id="lightbox-img" src="" alt="Imagem Ampliada">
-            <p id="lightbox-caption"></p>
+            <div class="galeria-carousel">
+                <button class="carousel-prev" onclick="prevGallerySlide()">&larr;</button>
+                <div class="carousel-slides">
+                    <div class="carousel-slide"><img src="Imagens/Logo.jpg" alt="Terraplanagem em obra" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço1.jpg" alt="Escavação em obra1" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço.jpg" alt="Escavação em obra2" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço6.jpg" alt="Escavação em obra3" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço3.png" alt="Escavação em obra4" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço7.jpg" alt="Escavação em obra5" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço8.jpg" alt="Escavação em obra6" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço9.jpg" alt="Escavação em obra7" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço4.jpg" alt="Compactação de solo em obra" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço5.jpg" alt="Projeto adicional 1" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                    <div class="carousel-slide"><img src="Imagens/Serviço2.png" alt="Projeto adicional 2" style="width: 100%; height: 200px; object-fit: cover;"></div>
+                </div>
+                <button class="carousel-next" onclick="nextGallerySlide()">&rarr;</button>
+            </div>
         </div>
     </section>
 
@@ -79,7 +90,7 @@
     <section id="sobre-nos" class="caixa-padrao">
         <h2>Sobre Nós</h2>
         <div class="sobre-conteudo">
-            <p>A <strong>Duwe Terraplanagem</strong> é especializada em serviços de terraplanagem, escavação e compactação de solo. Com mais de 15 anos de experiência, destacamo-nos pela qualidade, eficiência e compromisso com nossos clientes.</p>
+            <p>A <strong>Duwe Terraplanagem</strong> é especializada em serviços de terraplanagem, escavação e compactação de solo. Com mais de 10 anos de experiência, destacamo-nos pela qualidade, eficiência e compromisso com nossos clientes.</p>
             <p>Nossa missão é transformar terrenos em espaços prontos para construção, garantindo segurança, durabilidade e excelência em cada projeto. Utilizamos equipamentos de última geração e contamos com uma equipe altamente qualificada.</p>
             <p>Oferecemos consultoria personalizada para planejar seu projeto desde o início, assegurando a execução de cada detalhe com precisão.</p>
             <a href="#contato" class="cta-button">Planeje seu Projeto Conosco</a>
@@ -201,19 +212,21 @@
 
     <div class="sessao-dupla">
         <section id="simulador" class="caixa-padrao">
-            <h2>Simulador de Orçamento</h2>
-            <label for="tipo-servico">Tipo de Serviço:</label>
-            <select id="tipo-servico">
-                <option value="terraplanagem">Terraplanagem</option>
-                <option value="escavacao">Escavação</option>
-                <option value="compactacao">Compactação</option>
-            </select>
-            <label for="area">Área em m²:</label>
-            <input type="number" id="area" placeholder="Digite a área" required>
-            <button id="calcular-btn" onclick="calcularOrcamento()">Calcular</button>
-            <p id="resultado"></p>
-            <div id="alerta-simulador" class="alerta-simulador">
-                Os valores apresentados são estimativas e podem variar conforme as condições do terreno, clima e outros fatores técnicos.
+            <h2 class="centered-title">Simulador de Orçamento</h2>
+            <div class="simulador-content">
+                <label for="tipo-servico">Tipo de Serviço:</label>
+                <select id="tipo-servico">
+                    <option value="terraplanagem">Terraplanagem</option>
+                    <option value="escavacao">Escavação</option>
+                    <option value="compactacao">Compactação</option>
+                </select>
+                <label for="area">Área em m²:</label>
+                <input type="number" id="area" placeholder="Digite a área" required>
+                <button id="calcular-btn" onclick="calcularOrcamento()">Calcular</button>
+                <p id="resultado"></p>
+                <div id="alerta-simulador" class="alerta-simulador">
+                    Os valores apresentados são estimativas e podem variar conforme as condições do terreno, clima e outros fatores técnicos.
+                </div>
             </div>
         </section>
 
@@ -232,75 +245,78 @@
         </section>
     </div>
 
-    <section id="faq" class="caixa-padrao">
-        <h2>Perguntas Frequentes</h2>
-        <div class="faq-container">
-            <div class="faq-item">
-                <button class="faq-question">Qual o prazo médio de um projeto?</button>
-                <div class="faq-answer">
-                    <p>O prazo varia de acordo com a complexidade e tamanho do terreno, mas geralmente leva de 1 a 4 semanas. Entre em contato para uma estimativa personalizada!</p>
+    <section id="faq" class="collapsible-section">
+        <h2 class="collapsible-title">Perguntas Frequentes <span class="toggle-icon">▼</span></h2>
+        <div class="collapsible-content" style="max-width: 1000px; height: auto;">
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">Qual o prazo médio de um projeto?</button>
+                    <div class="faq-answer">
+                        <p>O prazo varia de acordo com a complexidade e tamanho do terreno, mas geralmente leva de 1 a 4 semanas. Entre em contato para uma estimativa personalizada!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Vocês atendem fora de Santa Catarina?</button>
+                    <div class="faq-answer">
+                        <p>Atualmente, nosso atendimento é focado em Santa Catarina, mas estamos abertos a avaliar projetos em outras regiões. Consulte-nos para mais detalhes!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Como funciona o simulador de orçamento?</button>
+                    <div class="faq-answer">
+                        <p>O simulador oferece uma estimativa baseada na área e tipo de serviço. Para um orçamento exato, é necessário uma visita técnica ao local.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Quais equipamentos vocês utilizam?</button>
+                    <div class="faq-answer">
+                        <p>Utilizamos máquinas modernas como escavadeiras, tratores e rolos compactadores, garantindo alta eficiência e qualidade.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">É necessário preparar o terreno antes do serviço?</button>
+                    <div class="faq-answer">
+                        <p>Depende do estado do terreno. Geralmente, fazemos uma análise inicial para determinar se é necessária alguma preparação prévia.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Vocês oferecem manutenção após o projeto?</button>
+                    <div class="faq-answer">
+                        <p>Oferecemos suporte pós-projeto mediante consulta. Entre em contato para discutir as opções disponíveis.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Qual o custo médio por metro quadrado?</button>
+                    <div class="faq-answer">
+                        <p>O custo varia conforme o serviço (terraplanagem, escavação ou compactação). O simulador dá uma estimativa inicial; para valores exatos, agende uma visita.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Como agendar uma visita técnica?</button>
+                    <div class="faq-answer">
+                        <p>Você pode agendar uma visita técnica pelo formulário de contato ou diretamente pelo WhatsApp. Forneça os detalhes do local e entraremos em contato!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Vocês trabalham em terrenos inclinados?</button>
+                    <div class="faq-answer">
+                        <p>Sim, temos experiência em terrenos inclinados. Cada caso é avaliado para garantir a segurança e a viabilidade do projeto.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Posso ver projetos anteriores?</button>
+                    <div class="faq-answer">
+                        <p>Sim, a seção 'Nossos Projetos' mostra alguns exemplos. Para mais detalhes ou visitas a locais específicos, entre em contato conosco!</p>
+                    </div>
                 </div>
             </div>
-            <div class="faq-item">
-                <button class="faq-question">Vocês atendem fora de Santa Catarina?</button>
-                <div class="faq-answer">
-                    <p>Atualmente, nosso atendimento é focado em Santa Catarina, mas estamos abertos a avaliar projetos em outras regiões. Consulte-nos para mais detalhes!</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Como funciona o simulador de orçamento?</button>
-                <div class="faq-answer">
-                    <p>O simulador oferece uma estimativa baseada na área e tipo de serviço. Para um orçamento exato, é necessário uma visita técnica ao local.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Quais equipamentos vocês utilizam?</button>
-                <div class="faq-answer">
-                    <p>Utilizamos máquinas modernas como escavadeiras, tratores e rolos compactadores, garantindo alta eficiência e qualidade.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">É necessário preparar o terreno antes do serviço?</button>
-                <div class="faq-answer">
-                    <p>Depende do estado do terreno. Geralmente, fazemos uma análise inicial para determinar se é necessária alguma preparação prévia.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Vocês oferecem manutenção após o projeto?</button>
-                <div class="faq-answer">
-                    <p>Oferecemos suporte pós-projeto mediante consulta. Entre em contato para discutir as opções disponíveis.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Qual o custo médio por metro quadrado?</button>
-                <div class="faq-answer">
-                    <p>O custo varia conforme o serviço (terraplanagem, escavação ou compactação). O simulador dá uma estimativa inicial; para valores exatos, agende uma visita.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Como agendar uma visita técnica?</button>
-                <div class="faq-answer">
-                    <p>Você pode agendar uma visita técnica pelo formulário de contato ou diretamente pelo WhatsApp. Forneça os detalhes do local e entraremos em contato!</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Vocês trabalham em terrenos inclinados?</button>
-                <div class="faq-answer">
-                    <p>Sim, temos experiência em terrenos inclinados. Cada caso é avaliado para garantir a segurança e a viabilidade do projeto.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Posso ver projetos anteriores?</button>
-                <div class="faq-answer">
-                    <p>Sim, a seção 'Nossos Projetos' mostra alguns exemplos. Para mais detalhes ou visitas a locais específicos, entre em contato conosco!</p>
-                </div>
-            </div>
+            <p class="collapsed-message">Clique no título para expandir.</p>
         </div>
     </section>
 
     <a href="https://wa.me/5547991835447?text=Olá,%20vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento%20personalizado,%20você%20pode%20me%20ajudar?" 
        class="whatsapp-button" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <img src="Imagens/whatsapp.png" alt="WhatsApp">
     </a>
 
     <footer>
@@ -317,5 +333,3 @@
 
     <script src="javascript.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-</body>
-</html>
