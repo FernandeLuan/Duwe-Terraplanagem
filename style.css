@@ -256,7 +256,7 @@ h2 {
 
 .carousel-slide img {
     width: 100%;
-    height: 200px;
+    height: auto; /* Ajuste para proporção natural */
     object-fit: cover;
     border-radius: 10px;
     cursor: default;
@@ -311,8 +311,15 @@ h2 {
 }
 
 @media (max-width: 820px) {
-    .carousel-slide {
-        min-width: 100%;
+    .carousel-slide img {
+        height: auto;
+        max-height: 300px; /* Limita altura em mobile */
+    }
+    .galeria-carousel {
+        padding: 0 10px;
+    }
+    .carousel-slides {
+        gap: 10px;
     }
 }
 
