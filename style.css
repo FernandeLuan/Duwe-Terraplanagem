@@ -508,9 +508,9 @@ h2 {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
     z-index: 1000;
     transition: transform 0.3s, opacity 0.3s;
     opacity: 0.9;
@@ -522,19 +522,20 @@ h2 {
 }
 
 .whatsapp-button img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
 @media (max-width: 820px) {
-    .whatsapp-button {
-        bottom: 10px;
-        right: 10px;
-        padding: 5px;
-    }
     .whatsapp-button img {
-        width: 30px;
-        height: 30px;
+        width: 50px;
+        height: 50px;
+    }
+    .galeria-carousel {
+        padding: 0 10px;
+    }
+    .carousel-slides {
+        gap: 10px;
     }
     #simulador h2 {
         font-size: 1.2rem;
@@ -542,6 +543,16 @@ h2 {
     }
     .alerta-simulador {
         margin-top: 15px;
+    }
+}
+
+@media (min-width: 821px) {
+    .whatsapp-button img {
+        width: 60px;
+        height: 60px;
+    }
+    .carousel-slide {
+        min-width: 33.33%;
     }
 }
 
@@ -816,12 +827,10 @@ footer {
     .whatsapp-button {
         bottom: 10px;
         right: 10px;
-        padding: 5px;
     }
-
     .whatsapp-button img {
-        width: 30px;
-        height: 30px;
+        width: 50px;
+        height: 50px;
     }
 
     #back-to-top {
