@@ -366,4 +366,5 @@ function closeLightbox() {
     lightboxImg.style.transform = "scale(1)";
 }
 
+// Iniciar animação automática da galeria
 requestAnimationFrame(animateGallery)
